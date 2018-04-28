@@ -4,6 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.administrator.modle.Cat;
 
@@ -17,11 +19,17 @@ public class CatAdapter extends ArrayAdapter{
         resourceId = textViewResouceId;
     }
 
-    @NonNull
+
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position,  View convertView,  ViewGroup parent) {
         Cat cat = (Cat) getItem(position);
 
         View view = LayoutInflater.from(getContext()).inflate(resourceId, null);
+        TextView catName = (TextView)view.findViewById(R.id.cat_name);
+        ImageView catImage = (ImageView)view.findViewById(R.id.cat_image);
+
+        catImage.setImageResource(cat.getImageid());
+        catName.setText(cat.getname());
+        return view;
     }
 }
